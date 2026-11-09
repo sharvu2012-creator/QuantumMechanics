@@ -1,0 +1,12 @@
+{
+  "name": "quantum-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A free, static, interactive quantum physics lab for school and college students.",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

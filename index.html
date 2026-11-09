@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b16">
+  <meta name="description" content="Quantum Lab is a free, interactive quantum physics playground for school and college students. Explore quantum tunnelling with live wave-packet visuals.">
+  <title>Quantum Lab — Interactive Quantum Physics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="star-field" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Quantum Lab home" data-i18n-aria="ui.homeAria">
+      <span class="brand-mark" aria-hidden="true">ψ</span>
+      <span class="brand-copy">
+        <strong data-i18n="ui.appName">Quantum Lab</strong>
+        <small data-i18n="ui.tagline">Explore quantum physics, one experiment at a time.</small>
+      </span>
+    </a>
+
+    <div class="language-switcher">
+      <label for="language-select" data-i18n="ui.language">Language</label>
+      <select id="language-select" aria-label="Language" data-i18n-aria="ui.language">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="pa">ਪੰਜਾਬੀ</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="page" id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span><span data-i18n="ui.heroEyebrow">Interactive quantum physics</span></p>
+        <h1 id="hero-title" data-i18n="ui.heroTitle">See the quantum world behave in real time.</h1>
+        <p class="hero-text" data-i18n="ui.heroText">Tune the experiment, watch the wave packet move, and discover why tiny particles can do things that everyday objects cannot.</p>
+      </div>
+      <div class="atom-art" aria-hidden="true">
+        <div class="atom-core">ψ</div>
+        <div class="atom-ring ring-one"></div>
+        <div class="atom-ring ring-two"></div>
+        <div class="atom-ring ring-three"></div>
+        <span class="atom-spark spark-one"></span>
+        <span class="atom-spark spark-two"></span>
+      </div>
+    </section>
+
+    <nav class="sim-tabs" id="simulation-tabs" aria-label="Simulations" data-i18n-aria="ui.simulations"></nav>
+
+    <section id="simulation-root" class="simulation-root"></section>
+
+    <section class="explainer card" id="explainer-box" aria-labelledby="why-title">
+      <div class="section-heading">
+        <span class="section-icon" aria-hidden="true">?</span>
+        <div>
+          <h2 id="why-title" data-i18n="ui.whyTitle">Why did that happen?</h2>
+          <p data-i18n="ui.whySubtitle">Change a slider to see a plain-language explanation of the physics.</p>
+        </div>
+      </div>
+      <p class="explanation-text" id="explanation-text" aria-live="polite"></p>
+    </section>
+
+    <section class="ask card" aria-labelledby="ask-title">
+      <div class="section-heading">
+        <span class="section-icon sparkle" aria-hidden="true">✦</span>
+        <div>
+          <h2 id="ask-title" data-i18n="ui.askTitle">Ask a question</h2>
+          <p data-i18n="ui.askSubtitle">Ask about this experiment. Your question and current slider values go securely to Gemini through a serverless function.</p>
+        </div>
+      </div>
+
+      <form class="ask-form" id="ask-form">
+        <label class="sr-only" for="ask-input" data-i18n="ui.askLabel">Your question</label>
+        <input
+          id="ask-input"
+          name="question"
+          type="text"
+          maxlength="400"
+          autocomplete="off"
+          data-i18n-placeholder="ui.askPlaceholder"
+          placeholder="e.g. Why does a wider barrier make tunnelling less likely?"
+        >
+        <button id="ask-submit" type="submit">
+          <span class="button-spark" aria-hidden="true">✦</span>
+          <span id="ask-submit-label" data-i18n="ui.askButton">Ask Quantum Lab</span>
+        </button>
+      </form>
+
+      <div class="ask-output" id="ask-output" hidden></div>
+      <p class="fine-print" data-i18n="ui.aiDisclaimer">AI answers can be wrong. Check important ideas with your teacher.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p data-i18n="ui.footer">Built for curious students. Free, open, and static by design.</p>
+    <p data-i18n="ui.footnote">The animation is a teaching visual. The T and R readouts use the exact rectangular-barrier formula.</p>
+  </footer>
+
+  <noscript>
+    <p class="noscript">Quantum Lab needs JavaScript to run the simulations.</p>
+  </noscript>
+
+  <!-- No API key here. The Netlify function reads GEMINI_API_KEY on the server. -->
+  <script>
+    window.QUANTUM_LAB_CONFIG = {
+      askEndpoint: "/.netlify/functions/ask"
+    };
+  </script>
+  <script src="translations.js"></script>
+  <script src="app.js"></script>
+  <script src="simulations/tunnelling.js"></script>
+</body>
+</html>
